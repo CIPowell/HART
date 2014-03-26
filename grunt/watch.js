@@ -22,7 +22,7 @@ module.exports = {
             livereload: 3579
         },
         files: [
-            'app/**/*.html',
+            'app/*.html',
             'app/css/**/*.less',
             'app/js/**/*.js'
         ]
