@@ -8,9 +8,17 @@
     </head>
     <body>
         <h1>HART</h1>
-        <div class="file-drop">Drop HAR file(s) here</div>
+        <div class="file-drop"><p>Drop HAR file(s) here</p></div>
         <!--build:js /js/hart.js-->
+        <script type="text/javascript" src="bower_components/mustache/mustache.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
         <!--endbuild-->
+
+        <script type="text/plain" id="file_template">
+            <div class="file">
+                <span class="name">{{name}}</span>
+            </div>
+        </script>
+
     </body>
 </html>

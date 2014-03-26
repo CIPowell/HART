@@ -71,27 +71,47 @@ var $ = document.querySelectorAll.bind(document),
 
     HART.prototype.drop_handler = function(evt)
     {
+        for( var tgt = evt.target; tgt && !tgt.classList.contains('file-drop'); tgt = tgt.parentElement){}
+
         doNothing(evt);
-        evt.target.classList.remove('drag-hover');
-        evt.target.classList.add('dropped');
+        tgt.classList.remove('drag-hover');
+        tgt.classList.add('dropped');
 
         var reader = new FileReader(),
             files = evt.dataTransfer.files;
 
+
+
         for( var i =0, f; f = files[i]; i++)
         {
-
+            this.render_file(f, tgt);
         }
     };
 
+    HART.prototype.render_file = function(file, ele)
+    {
+        var tpl = $id('file_template').innerHTML.toString();
+
+        ele.innerHTML += Mustache.render(tpl, { "name": file.name });
+
+    }
+
     HART.prototype.drag_enter = function(evt)
     {
-        evt.target.classList.add('drag-hover');
+        var tgt = event.target;
+
+        if(tgt.classList.contains('file-drop')){
+            tgt.classList.add('drag-hover');
+        }
     }
 
     HART.prototype.drag_exit = function(evt)
     {
-        evt.target.classList.remove('drag-hover');
+        var tgt = event.target;
+
+        if(tgt.classList.contains('file-drop')){
+            tgt.classList.remove('drag-hover');
+        }
     }
 
     new HART();
