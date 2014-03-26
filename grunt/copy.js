@@ -1,11 +1,14 @@
 module.exports = {
-    html: {
-        files: [{ expand : true, cwd: 'app/templates', src: ['*.html'], dest : 'dist/templates', filter: 'isFile'}]
+    dev: {
+        files: [
+            {expand : true, cwd: 'app', src: ['*.html', '**/*.js'], dest : 'build', filter: 'isFile'},
+            {expand : true, cwd: 'app/images', src:['*.png', '*.jpg'], dest: 'build/images'}
+        ]
     },
-    css: {
-        files: [{ expand : true, cwd: 'app/css', src: ['font/.*'], dest : 'dist/css'}]
-    },
-    images:{
-        files: [{expand : true, cwd: 'app/images', src:['*.png', '*.jpg'], dest: 'dist/images'}]
+    build: {
+        files: [
+            { expand : true, cwd: 'app', src: ['*.html'], dest : 'dist', filter: 'isFile' },
+            { expand : true, cwd: 'app/images', src:['*.png', '*.jpg'], dest: 'dist/images' }
+        ]
     }
 }

@@ -1,5 +1,5 @@
 serve:
-    - 'newer:less'
+    - 'concurrent:prebuild'
     - 'autoprefixer'
     - 'connect'
     - 'open:dev'
@@ -19,9 +19,3 @@ prebuild-css:
 
 minify:
     - 'cssmin'
-
-prebuild-templates:
-    - 'copy:html'
-
-prebuild-images:
-    - 'copy:images'

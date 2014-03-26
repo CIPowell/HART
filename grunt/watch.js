@@ -4,8 +4,15 @@ module.exports = {
 //        tasks : ['node_serverOne']
 //    },
     css: {
-        files: '**/*.less',
+        files: 'app/css/**/*.less',
         tasks: ['less', 'autoprefixer'],
+        options: {
+          livereload: true,
+        }
+    },
+    js: {
+        files: 'app/js/**/*.js',
+        tasks: ['copy:dev'],
         options: {
           livereload: true,
         }
@@ -15,8 +22,9 @@ module.exports = {
             livereload: 3579
         },
         files: [
-            'app/index.html',
-            '**/*.less'
+            'app/**/*.html',
+            'app/css/**/*.less',
+            'app/js/**/*.js'
         ]
     }
 }

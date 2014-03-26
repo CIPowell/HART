@@ -1,0 +1,28 @@
+{
+  "name": "HART",
+  "version": "0.0.0",
+  "authors": [
+    "Chris I Powell <chris.i.powell@gmail.com>"
+  ],
+  "description": "HAR Tool - interpret HAR files",
+  "main": "index.html",
+  "keywords": [
+    "HAR",
+    "web",
+    "development",
+    "performance"
+  ],
+  "license": "GPL3",
+  "homepage": "cipowell.github.io/HART",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mustache": "~0.8.1"
+  }
+}

@@ -1,6 +1,6 @@
 module.exports = {
-    html : './src/*.html',
+    html : 'app/*.html',
     options:{
-        dest: './dist',
+        dest: 'dist',
     }
 }
