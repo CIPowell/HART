@@ -1,0 +1,8 @@
+{
+    "name" : "HART",
+    "description" : "HAR Tool - a tool to visualise the output of HAR files",
+    "version": "0.0.0",
+    "repository" : "https://github.com/CIPowell/HART",
+    "dependencies" : {},
+    "devDependencies" : {}
+}

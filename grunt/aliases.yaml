@@ -1,0 +1,27 @@
+serve:
+    - 'newer:less'
+    - 'autoprefixer'
+    - 'connect'
+    - 'open:dev'
+    - 'watch'
+
+build:
+    - 'concurrent:prebuild'
+    - 'useminPrepare'
+    - 'concat'
+    - 'minify'
+    - 'usemin'
+    - 'bump:build'
+
+prebuild-css:
+    - 'less'
+    - 'autoprefixer'
+
+minify:
+    - 'cssmin'
+
+prebuild-templates:
+    - 'copy:html'
+
+prebuild-images:
+    - 'copy:images'
