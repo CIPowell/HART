@@ -17,6 +17,14 @@ module.exports = {
           livereload: true,
         }
     },
+    html:
+    {
+        files: 'app/*.html',
+        tasks: ['copy:dev'],
+        options: {
+            livereload: true
+        }
+    },
     livereload: {
         options: {
             livereload: 3579

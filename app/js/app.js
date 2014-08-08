@@ -22,6 +22,14 @@ var $ = document.querySelectorAll.bind(document),
         evt.preventDefault();
     }
 
+    function domainFromString(url)
+    {
+        var u = url
+            .toLowerCase().replace(/https?:\/\//, '');
+        return u.substr(0, u.indexOf('/'));
+    }
+
+
     /**
      * Constructor
      */
@@ -167,6 +175,8 @@ var $ = document.querySelectorAll.bind(document),
     HART.prototype.render = function(name, object)
     {
         this.basic_stats(object);
+        this.type_stats(object);
+        this.domain_stats(object);
     }
 
     HART.prototype.basic_stats = function(object)
@@ -175,6 +185,64 @@ var $ = document.querySelectorAll.bind(document),
         div.innerHTML = Mustache.render(this.get_template('tpl_basic_stats'), object);
         document.body.appendChild(div);
     }
+
+    HART.prototype.type_stats = function(object)
+    {
+        var types = this.entry_stats(object, function(results, entry)
+        {
+            var mime_type = this.mime_similies(entry.response.content.mimeType);
+
+
+            if( results[mime_type] ) {
+                results[mime_type] ++;
+            }
+            else
+            {
+                results[mime_type] = 1;
+            }
+        }.bind(this));
+
+        console.debug(types);
+    }
+
+    HART.prototype.entry_stats = function(object, evalfunction)
+    {
+         var results = {};
+
+        for( var req in object.log.entries )
+        {
+            evalfunction(results, object.log.entries[req]);
+        }
+
+        return results;
+    }
+
+    HART.prototype.mime_similies = function(type)
+    {
+        return {
+            "text/javascript" : 'application/javascript',
+            "application/x-javascript" : 'application/javascript',
+        }[type] || type;
+    }
+
+    HART.prototype.domain_stats = function(object)
+    {
+        var domains = this.entry_stats(object, function(results, entry){
+            var domain = domainFromString(entry.request.url);
+
+            if(results[domain])
+            {
+                results[domain]++;
+            }
+            else
+            {
+                results[domain] = 1;
+            }
+        });
+
+        console.debug(domains);
+    }
+
 
     document.body.onload = function() { new HART(); }
 })();
